@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Bergung übernehmen</title>
+    <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+    <div class="page-wrapper">
+
+        <section class="hero">
+            <div class="hero-top">
+                <div class="logo-badge">GNF</div>
+
+                <div class="brand-block">
+                    <span class="brand-kicker">Bergung koordinieren</span>
+                    <h1>Bergung übernehmen</h1>
+                    <p>
+                        Bergende Personen können ein offenes Geisternetz auswählen und sich
+                        mit Namen und Telefonnummer für die Bergung eintragen.
+                    </p>
+                </div>
+            </div>
+
+            <div class="hero-meta">
+                <span class="hero-pill">Statuswechsel</span>
+                <span class="hero-pill">GEMELDET → BERGUNG_BEVORSTEHEND</span>
+                <span class="hero-pill">Maximal eine bergende Person</span>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Bergung zuweisen</h2>
+
+            <div class="info-box">
+                Nach der Übernahme wird das ausgewählte Geisternetz auf
+                <strong>BERGUNG_BEVORSTEHEND</strong> gesetzt und der bergenden Person zugeordnet.
+            </div>
+
+            <h:messages globalOnly="true" styleClass="message" />
+
+            <h:form styleClass="form-section">
+                <div class="form-group">
+                    <label>Geisternetz auswählen</label><br/>
+                    <h:selectOneMenu value="#{assignRecoveryController.selectedGhostNetId}" required="true">
+                        <f:selectItem itemLabel="Bitte auswählen" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{assignRecoveryController.openGhostNets}"
+                                       var="net"
+                                       itemValue="#{net.id}"
+                                       itemLabel="ID #{net.id} - #{net.latitude}, #{net.longitude} - #{net.estimatedSize} qm" />
+                    </h:selectOneMenu>
+                </div>
+
+                <div class="form-group">
+                    <label>Name der bergenden Person</label><br/>
+                    <h:inputText value="#{assignRecoveryController.recoveringName}" required="true" />
+                </div>
+
+                <div class="form-group">
+                    <label>Telefonnummer</label><br/>
+                    <h:inputText value="#{assignRecoveryController.recoveringPhoneNumber}" required="true" />
+                </div>
+
+                <div class="form-group">
+                    <h:commandButton value="Bergung übernehmen"
+                                     action="#{assignRecoveryController.assignRecovery}" />
+                </div>
+            </h:form>
+
+            <h:link outcome="index" value="Zurück zur Startseite" styleClass="back-link" />
+        </section>
+
+    </div>
+</h:body>
+</html>

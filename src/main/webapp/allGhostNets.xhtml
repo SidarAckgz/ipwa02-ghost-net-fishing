@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Alle Geisternetze</title>
+    <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+    <div class="page-wrapper">
+
+        <section class="hero">
+            <div class="hero-top">
+                <div class="logo-badge">GNF</div>
+
+                <div class="brand-block">
+                    <span class="brand-kicker">Datenübersicht</span>
+                    <h1>Alle Geisternetze</h1>
+                    <p>
+                        Vollständige Gesamtübersicht aller erfassten Geisternetze inklusive
+                        Standort, Status und beteiligter Personen.
+                    </p>
+                </div>
+            </div>
+
+            <div class="hero-meta">
+                <span class="hero-pill">Alle Statuswerte</span>
+                <span class="hero-pill">Persistente Daten</span>
+                <span class="hero-pill">Kontrollübersicht</span>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Gesamtdatenbestand</h2>
+
+            <div class="info-box">
+                Diese Tabelle dient als zentrale Kontrollansicht des Prototyps.
+                Sie zeigt, wie sich Statusänderungen und Personenzuordnungen auf die gespeicherten Datensätze auswirken.
+            </div>
+
+            <h:dataTable value="#{allGhostNetsController.allGhostNets}" var="net">
+
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                    <h:outputText value="#{net.id}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Breitengrad</f:facet>
+                    <h:outputText value="#{net.latitude}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Längengrad</f:facet>
+                    <h:outputText value="#{net.longitude}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Größe in qm</f:facet>
+                    <h:outputText value="#{net.estimatedSize}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Status</f:facet>
+                    <span class="status">
+                        <h:outputText value="#{net.status}" />
+                    </span>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Meldende Person</f:facet>
+                    <h:outputText value="#{net.reportingPerson.name}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Bergende Person</f:facet>
+                    <h:outputText value="#{net.recoveringPerson.name}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Verschollen gemeldet durch</f:facet>
+                    <h:outputText value="#{net.missingReportingPerson.name}" />
+                </h:column>
+
+            </h:dataTable>
+
+            <h:link outcome="index" value="Zurück zur Startseite" styleClass="back-link" />
+        </section>
+
+    </div>
+</h:body>
+</html>

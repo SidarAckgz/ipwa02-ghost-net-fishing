@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+    <title>Ghost Net Fishing</title>
+    <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+    <div class="page-wrapper">
+
+        <section class="hero">
+            <div class="hero-top">
+                <div class="logo-badge">GNF</div>
+
+                <div class="brand-block">
+                    <span class="brand-kicker">Fallstudien-Prototyp</span>
+                    <h1>Ghost Net Fishing</h1>
+                    <p>
+                        Webbasierter Prototyp zur Meldung, Verwaltung und Nachverfolgung von Geisternetzen.
+                        Die Anwendung unterstützt die Erfassung von Fundorten, die Übernahme von Bergungen
+                        sowie einfache Statusänderungen innerhalb des Bergungsprozesses.
+                    </p>
+                </div>
+            </div>
+
+            <div class="hero-meta">
+                <span class="hero-pill">JSF / Jakarta Faces</span>
+                <span class="hero-pill">CDI-Beans</span>
+                <span class="hero-pill">JPA / Hibernate</span>
+                <span class="hero-pill">relationale Datenbank</span>
+            </div>
+        </section>
+
+        <div class="main-grid">
+            <section class="card">
+                <h2>Projektüberblick</h2>
+                <p>
+                    Der Prototyp bildet zentrale Abläufe zur Verwaltung von Geisternetzen ab.
+                    Dazu gehören die Meldung neuer Netze, die Übernahme einer Bergung durch eine
+                    bergende Person und die spätere Änderung des Status.
+                </p>
+
+                <ul class="info-list">
+                    <li>Erfassung neuer Geisternetze inklusive GPS-Koordinaten und geschätzter Größe</li>
+                    <li>Optionale anonyme Meldung eines Geisternetzes</li>
+                    <li>Zuordnung einer bergenden Person zu einem gemeldeten Geisternetz</li>
+                    <li>Statusänderung auf <strong>geborgen</strong> oder <strong>verschollen</strong></li>
+                    <li>Tabellarische Übersicht aller gespeicherten Geisternetze</li>
+                </ul>
+            </section>
+
+            <aside class="card">
+                <h2>Systemprofil</h2>
+
+                <div class="stat-grid">
+                    <div class="stat-box">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">ausgewählte Anforderungen aus dem Product Backlog</span>
+                    </div>
+
+                    <div class="stat-box">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Statuswerte im Lebenszyklus eines Geisternetzes</span>
+                    </div>
+
+                    <div class="stat-box">
+                        <span class="stat-number">JSF</span>
+                        <span class="stat-label">komponentenbasierte Umsetzung der Weboberfläche</span>
+                    </div>
+
+                    <div class="stat-box">
+                        <span class="stat-number">JPA</span>
+                        <span class="stat-label">persistente Speicherung der Datenbankobjekte</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <section class="card">
+            <h2 class="section-title">Funktionen</h2>
+            <p class="section-subtitle">
+                Über die folgenden Funktionskarten können die umgesetzten Prozessschritte
+                des Prototyps aufgerufen werden.
+            </p>
+
+            <div class="navigation-grid">
+
+                <h:link outcome="reportGhostNet" styleClass="nav-card">
+                    <span class="nav-card-tag">Meldung</span>
+                    <span class="nav-title">Geisternetz melden</span>
+                    <span class="nav-description">
+                        Neues Geisternetz mit Fundort, Koordinaten und geschätzter Größe erfassen.
+                    </span>
+                </h:link>
+
+                <h:link outcome="openGhostNets" styleClass="nav-card">
+                    <span class="nav-card-tag">Übersicht</span>
+                    <span class="nav-title">Offene Geisternetze anzeigen</span>
+                    <span class="nav-description">
+                        Alle aktuell gemeldeten und noch nicht geborgenen Geisternetze tabellarisch anzeigen.
+                    </span>
+                </h:link>
+
+                <h:link outcome="assignRecovery" styleClass="nav-card">
+                    <span class="nav-card-tag">Bergung</span>
+                    <span class="nav-title">Bergung übernehmen</span>
+                    <span class="nav-description">
+                        Als bergende Person ein gemeldetes Geisternetz auswählen und zur Bergung übernehmen.
+                    </span>
+                </h:link>
+
+                <h:link outcome="completeRecovery" styleClass="nav-card">
+                    <span class="nav-card-tag">Status</span>
+                    <span class="nav-title">Als geborgen melden</span>
+                    <span class="nav-description">
+                        Ein übernommenes Geisternetz nach erfolgreicher Bergung als geborgen markieren.
+                    </span>
+                </h:link>
+
+                <h:link outcome="markMissing" styleClass="nav-card">
+                    <span class="nav-card-tag">Status</span>
+                    <span class="nav-title">Als verschollen melden</span>
+                    <span class="nav-description">
+                        Noch nicht geborgene Geisternetze durch eine identifizierte Person als verschollen melden.
+                    </span>
+                </h:link>
+
+                <h:link outcome="allGhostNets" styleClass="nav-card">
+                    <span class="nav-card-tag">Datenbasis</span>
+                    <span class="nav-title">Alle Geisternetze anzeigen</span>
+                    <span class="nav-description">
+                        Gesamtübersicht aller gespeicherten Geisternetze inklusive Status und beteiligter Personen.
+                    </span>
+                </h:link>
+
+            </div>
+
+            <p class="footer-note">
+                Aktueller Status:
+                <h:outputText value="#{homeController.welcomeText}" />
+            </p>
+        </section>
+
+    </div>
+</h:body>
+</html>

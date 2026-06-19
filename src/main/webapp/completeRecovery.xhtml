@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Geisternetz als geborgen melden</title>
+    <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+    <div class="page-wrapper">
+
+        <section class="hero">
+            <div class="hero-top">
+                <div class="logo-badge">GNF</div>
+
+                <div class="brand-block">
+                    <span class="brand-kicker">Bergung abschließen</span>
+                    <h1>Geisternetz als geborgen melden</h1>
+                    <p>
+                        Bereits übernommene Geisternetze können nach erfolgreicher Bergung
+                        als geborgen markiert werden.
+                    </p>
+                </div>
+            </div>
+
+            <div class="hero-meta">
+                <span class="hero-pill">Statuswechsel</span>
+                <span class="hero-pill">BERGUNG_BEVORSTEHEND → GEBORGEN</span>
+                <span class="hero-pill">Abschluss des Bergungsprozesses</span>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Bergung abschließen</h2>
+
+            <div class="info-box">
+                Es werden nur Geisternetze angezeigt, deren Bergung bereits übernommen wurde.
+                Nach dem Speichern werden diese Netze nicht mehr in der offenen Bergungsliste geführt.
+            </div>
+
+            <h:messages globalOnly="true" styleClass="message" />
+
+            <h:form styleClass="form-section">
+                <div class="form-group">
+                    <label>Geisternetz auswählen</label><br/>
+                    <h:selectOneMenu value="#{completeRecoveryController.selectedGhostNetId}" required="true">
+                        <f:selectItem itemLabel="Bitte auswählen" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{completeRecoveryController.ghostNetsInRecovery}"
+                                       var="net"
+                                       itemValue="#{net.id}"
+                                       itemLabel="ID #{net.id} - #{net.latitude}, #{net.longitude} - #{net.estimatedSize} qm - Bergung durch #{net.recoveringPerson.name}" />
+                    </h:selectOneMenu>
+                </div>
+
+                <div class="form-group">
+                    <h:commandButton value="Als geborgen melden"
+                                     action="#{completeRecoveryController.completeRecovery}" />
+                </div>
+            </h:form>
+
+            <h:link outcome="index" value="Zurück zur Startseite" styleClass="back-link" />
+        </section>
+
+    </div>
+</h:body>
+</html>
